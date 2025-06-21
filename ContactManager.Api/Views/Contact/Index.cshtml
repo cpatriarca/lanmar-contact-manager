@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Contacts List";
+}
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            function performSearch(query) {
+                $.ajax({
+                    url: '@Url.Action("Search", "Contact")',
+                    type: 'GET',
+                    data: { searchTerm: query },
+                    success: function (data) {
+                        $('#searchResults').html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('AJAX Error:', status, error);
+                    }
+                });
+            }
+
+            // Bind the keyup event to the search box
+            $('#searchTerm').on('keyup', function () {
+                var query = $(this).val();
+                performSearch(query);
+            });
+
+            // Trigger the search on page load with the current value
+            var initialQuery = $('#searchTerm').val();
+            performSearch(initialQuery);
+        });
+    </script>
+    <script>
+        function clearAndSubmit() {
+            const input = document.querySelector('input[id="searchTerm"]');
+            if (input) input.value = '';
+            input.form.submit();
+        }
+    </script>
+}
+
+
+
+<h2>Contacts</h2>
+@* The search implemented here uses an autocomplete filter style, which is appropriate given the small data set and simplicity of the app.
+Dedicated filter fields become more appropriate with increases of data size and complexity *@
+<form method="get" asp-action="Index" class="mb-4">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" id="searchTerm" class="form-control me-2 rounded" value="@ViewBag.SearchTerm" placeholder="Search..." />
+            <button type="button" class="btn btn-secondary me-2 rounded" onclick="clearAndSubmit()">Clear</button>
+            <a asp-action="Create" class="btn btn-primary rounded">Add New Contact</a>
+        </div>
+    </div>
+</form>
+
+<div id="searchResults"></div>
+

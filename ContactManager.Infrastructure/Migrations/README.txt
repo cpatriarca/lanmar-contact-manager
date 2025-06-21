@@ -1,0 +1,1 @@
+﻿Run `dotnet ef migrations add InitialCreate -p ContactManager.Infrastructure -s ContactManager.Api` to generate migration files.

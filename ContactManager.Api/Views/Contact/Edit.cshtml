@@ -1,0 +1,53 @@
+﻿@model ContactManager.Application.Models.ContactDto
+@{
+    ViewBag.Title = "Edit Contact";
+}
+
+<h2>Edit Contact</h2>
+<form asp-action="Edit" method="post">
+    <input asp-for="Id" type="hidden" />
+
+    <div class="form-group row mb-3">
+        <label asp-for="FirstName" class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+            <input asp-for="FirstName" type="text" class="col-sm-2 form-control" id="FirstName" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row mb-3">
+        <label asp-for="LastName" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-10">
+            <input asp-for="LastName" type="text" class="col-sm-2 form-control" id="LastName" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row mb-3">
+        <label asp-for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
+        <div class="col-sm-10">
+            <input asp-for="CompanyName" type="text" class="col-sm-2 form-control" id="CompanyName" />
+            <span asp-validation-for="CompanyName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row mb-3">
+        <label asp-for="Mobile" class="col-sm-2 col-form-label">Mobile</label>
+        <div class="col-sm-10">
+            <input asp-for="Mobile" type="text" class="col-sm-2 form-control" id="Mobile" />
+            <span asp-validation-for="Mobile" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row mb-3">
+        <label asp-for="Email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input asp-for="Email" type="text" class="col-sm-2 form-control" id="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <!-- Repeat similar structure for other form fields -->
+    <div class="form-group row mb-3">
+        <div class="col-sm-10 offset-sm-2">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="@Url.Action("Index", "Contact")" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+</form>

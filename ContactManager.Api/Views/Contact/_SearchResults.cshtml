@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ContactManager.Application.Models.ContactDto>
+
+<style>
+    .col-name { width: 20%; }
+    .col-company { width: 25%; }
+    .col-mobile { width: 15%; }
+    .col-email { width: 30%; }
+    .col-actions { width: 10%; }
+</style>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="col-name">Name</th>
+            <th class="col-company">Company</th>
+            <th class="col-mobile">Mobile</th>
+            <th class="col-email">Email</th>
+            <th class="col-actions">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contact in Model)
+        {
+            <tr>
+                <td>@contact.FirstName @contact.LastName</td>
+                <td>@contact.CompanyName</td>
+                <td>@contact.Mobile</td>
+                <td>@contact.Email</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@contact.Id" >Edit</a>
+                    <a asp-action="Delete" asp-route-id="@contact.Id" onclick="return confirm('Are you sure you want to delete this contact?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
